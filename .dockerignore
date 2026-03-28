@@ -1,0 +1,17 @@
+# Used when build context is the solution root: docker build -f Api/Dockerfile .
+
+**/.vs
+**/.vscode
+**/.idea
+**/.git
+**/.gitignore
+**/bin
+**/obj
+**/out
+**/*.user
+**/*.suo
+**/TestResults
+**/node_modules
+**/.cursor
+**/agent-tools
+**/terminals
