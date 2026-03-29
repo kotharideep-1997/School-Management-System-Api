@@ -49,6 +49,28 @@ public class StudentRepository : IStudnetRepository
             commandType: StoredProcedureHelper.Sp);
     }
 
+    public async Task<int> CountActiveStudentsInClassAsync(int classId, int? excludeStudentId = null)
+    {
+        return await _db.ExecuteScalarAsync<int>(
+            "sp_Students_CountActiveInClass",
+            new { p_ClassId = classId, p_ExcludeStudentId = excludeStudentId },
+            commandType: StoredProcedureHelper.Sp);
+    }
+
+    public async Task<bool> ExistsRollNoInClassAsync(int classId, int rollNo, int? excludeStudentId = null)
+    {
+        var count = await _db.ExecuteScalarAsync<int>(
+            "sp_Students_CountByClassAndRollNo",
+            new
+            {
+                p_ClassId = classId,
+                p_RollNo = rollNo,
+                p_ExcludeStudentId = excludeStudentId
+            },
+            commandType: StoredProcedureHelper.Sp);
+        return count > 0;
+    }
+
     public async Task<PagedResultDto<Student>> GetPagedAsync(PagedRequestDto request)
     {
         var parameters = new

@@ -170,6 +170,7 @@ E:\School Management System\School-Management-System-Api\Api\obj\Debug\net8.0\Ap
 E:\School Management System\School-Management-System-Api\Api\obj\Debug\net8.0\Api.csproj.CoreCompileInputs.cache
 E:\School Management System\School-Management-System-Api\Api\obj\Debug\net8.0\Api.MvcApplicationPartsAssemblyInfo.cs
 E:\School Management System\School-Management-System-Api\Api\obj\Debug\net8.0\Api.MvcApplicationPartsAssemblyInfo.cache
+E:\School Management System\School-Management-System-Api\Api\obj\Debug\net8.0\Api.sourcelink.json
 E:\School Management System\School-Management-System-Api\Api\obj\Debug\net8.0\rjimswa.dswa.cache.json
 E:\School Management System\School-Management-System-Api\Api\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
 E:\School Management System\School-Management-System-Api\Api\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
@@ -179,10 +180,10 @@ E:\School Management System\School-Management-System-Api\Api\obj\Debug\net8.0\st
 E:\School Management System\School-Management-System-Api\Api\obj\Debug\net8.0\staticwebassets.development.json
 E:\School Management System\School-Management-System-Api\Api\obj\Debug\net8.0\staticwebassets.build.endpoints.json
 E:\School Management System\School-Management-System-Api\Api\obj\Debug\net8.0\swae.build.ex.cache
-E:\School Management System\School-Management-System-Api\Api\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 E:\School Management System\School-Management-System-Api\Api\obj\Debug\net8.0\Api.csproj.Up2Date
 E:\School Management System\School-Management-System-Api\Api\obj\Debug\net8.0\Api.dll
 E:\School Management System\School-Management-System-Api\Api\obj\Debug\net8.0\refint\Api.dll
 E:\School Management System\School-Management-System-Api\Api\obj\Debug\net8.0\Api.pdb
 E:\School Management System\School-Management-System-Api\Api\obj\Debug\net8.0\Api.genruntimeconfig.cache
 E:\School Management System\School-Management-System-Api\Api\obj\Debug\net8.0\ref\Api.dll
+E:\School Management System\School-Management-System-Api\Api\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

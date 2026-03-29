@@ -17,6 +17,37 @@
   },
   {
     "ContainingType": "Api.Controllers.AttendanceReportController",
+    "Method": "GetAttendanceGrid",
+    "RelativePath": "api/AttendanceReport/grid",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "FromDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "ToDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "StudentName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "RollNo",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Api.Controllers.AttendanceReportController",
     "Method": "GetForStudent",
     "RelativePath": "api/AttendanceReport/student/{studentId}",
     "HttpMethod": "GET",
@@ -413,8 +444,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "model",
-        "Type": "Domain.Models.Student",
+        "Name": "dto",
+        "Type": "Application.DTO.UpdateStudentDto",
         "IsRequired": true
       }
     ],

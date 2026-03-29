@@ -1,3 +1,4 @@
+using Application.DTO;
 using Domain.Models;
 
 namespace Application.IRepository
@@ -8,6 +9,8 @@ namespace Application.IRepository
 
         Task<IEnumerable<StudentAttendance>> GetAttendanceForDateAsync(DateTime date);
 
-        Task<IReadOnlyDictionary<string, int>> GetAttendanceSummaryForDateAsync(DateTime date);
+        Task<AttendanceDaySummaryDto> GetAttendanceSummaryForDateAsync(DateTime date);
+
+        Task<AttendanceGridResultDto> GetAttendanceGridAsync(AttendanceGridFilterDto filter);
     }
 }

@@ -6058,11 +6058,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\School Management System\\School-Management-System-Api\\Infrastructure\\Infrastructure.csproj",
+      "projectUniqueName": "e:\\School Management System\\School-Management-System-Api\\Infrastructure\\Infrastructure.csproj",
       "projectName": "Infrastructure",
-      "projectPath": "E:\\School Management System\\School-Management-System-Api\\Infrastructure\\Infrastructure.csproj",
+      "projectPath": "e:\\School Management System\\School-Management-System-Api\\Infrastructure\\Infrastructure.csproj",
       "packagesPath": "C:\\Users\\Kothari Deep\\.nuget\\packages\\",
-      "outputPath": "E:\\School Management System\\School-Management-System-Api\\Infrastructure\\obj\\",
+      "outputPath": "e:\\School Management System\\School-Management-System-Api\\Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -6084,11 +6084,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "E:\\School Management System\\School-Management-System-Api\\Application\\Application.csproj": {
-              "projectPath": "E:\\School Management System\\School-Management-System-Api\\Application\\Application.csproj"
+            "e:\\School Management System\\School-Management-System-Api\\Application\\Application.csproj": {
+              "projectPath": "e:\\School Management System\\School-Management-System-Api\\Application\\Application.csproj"
             },
-            "E:\\School Management System\\School-Management-System-Api\\Domain\\Domain.csproj": {
-              "projectPath": "E:\\School Management System\\School-Management-System-Api\\Domain\\Domain.csproj"
+            "e:\\School Management System\\School-Management-System-Api\\Domain\\Domain.csproj": {
+              "projectPath": "e:\\School Management System\\School-Management-System-Api\\Domain\\Domain.csproj"
             }
           }
         }

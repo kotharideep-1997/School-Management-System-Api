@@ -1,3 +1,4 @@
+using Application.DTO;
 using Application.IRepository;
 using Dapper;
 using Domain.Models;
@@ -36,13 +37,85 @@ public class AttendanceReportRepository : IAttendanceReport
             commandType: StoredProcedureHelper.Sp);
     }
 
-    public async Task<IReadOnlyDictionary<string, int>> GetAttendanceSummaryForDateAsync(DateTime date)
+    public async Task<AttendanceDaySummaryDto> GetAttendanceSummaryForDateAsync(DateTime date)
     {
-        var rows = await _db.QueryAsync<(string Status, int Cnt)>(
-            "sp_StudentAttendances_SelectSummaryByDate",
-            new { p_Date = date.Date },
-            commandType: StoredProcedureHelper.Sp);
+        var d = date.Date;
+        var dExclusive = d.AddDays(1);
 
-        return rows.ToDictionary(r => r.Status, r => r.Cnt);
+        var rows = (await _db.QueryAsync<AttendanceGridRowDto>(
+            "sp_AttendanceReport_SelectDayRows",
+            new { p_From = d, p_ToExclusive = dExclusive },
+            commandType: StoredProcedureHelper.Sp)).ToList();
+
+        var present = new List<AttendanceGridRowDto>();
+        var absent = new List<AttendanceGridRowDto>();
+        var other = new List<AttendanceGridRowDto>();
+
+        foreach (var row in rows)
+        {
+            var status = row.Attendance?.Trim() ?? string.Empty;
+            if (string.Equals(status, "Present", StringComparison.OrdinalIgnoreCase))
+                present.Add(row);
+            else if (string.Equals(status, "Absent", StringComparison.OrdinalIgnoreCase))
+                absent.Add(row);
+            else
+                other.Add(row);
+        }
+
+        return new AttendanceDaySummaryDto
+        {
+            Date = d,
+            PresentCount = present.Count,
+            AbsentCount = absent.Count,
+            PresentData = present,
+            AbsentData = absent,
+            OtherData = other
+        };
+    }
+
+    public async Task<AttendanceGridResultDto> GetAttendanceGridAsync(AttendanceGridFilterDto filter)
+    {
+        var attFrom = filter.FromDate.Date;
+        var attToExclusive = filter.ToDate.Date.AddDays(1);
+
+        var nameTrim = string.IsNullOrWhiteSpace(filter.StudentName) ? null : filter.StudentName.Trim();
+        var nameLike = nameTrim is null ? null : $"%{nameTrim}%";
+
+        var rows = (await _db.QueryAsync<AttendanceGridRowDto>(
+            "sp_AttendanceReport_SelectGridFiltered",
+            new
+            {
+                p_AttFrom = attFrom,
+                p_AttToExclusive = attToExclusive,
+                p_NameLike = nameLike,
+                p_RollNo = filter.RollNo
+            },
+            commandType: StoredProcedureHelper.Sp)).ToList();
+
+        var present = new List<AttendanceGridRowDto>();
+        var absent = new List<AttendanceGridRowDto>();
+        var other = new List<AttendanceGridRowDto>();
+
+        foreach (var row in rows)
+        {
+            var status = row.Attendance?.Trim() ?? string.Empty;
+            if (string.Equals(status, "Present", StringComparison.OrdinalIgnoreCase))
+                present.Add(row);
+            else if (string.Equals(status, "Absent", StringComparison.OrdinalIgnoreCase))
+                absent.Add(row);
+            else
+                other.Add(row);
+        }
+
+        return new AttendanceGridResultDto
+        {
+            FromDate = filter.FromDate.Date,
+            ToDate = filter.ToDate.Date,
+            PresentCount = present.Count,
+            AbsentCount = absent.Count,
+            PresentData = present,
+            AbsentData = absent,
+            OtherData = other
+        };
     }
 }

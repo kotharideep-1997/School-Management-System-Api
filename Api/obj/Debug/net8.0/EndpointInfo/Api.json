@@ -88,6 +88,51 @@
         }
       }
     },
+    "/api/AttendanceReport/grid": {
+      "get": {
+        "tags": [
+          "AttendanceReport"
+        ],
+        "parameters": [
+          {
+            "name": "FromDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "ToDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "StudentName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "RollNo",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Auth/login": {
       "post": {
         "tags": [
@@ -651,17 +696,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Student"
+                "$ref": "#/components/schemas/UpdateStudentDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Student"
+                "$ref": "#/components/schemas/UpdateStudentDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Student"
+                "$ref": "#/components/schemas/UpdateStudentDto"
               }
             }
           }
@@ -1063,49 +1108,6 @@
         },
         "additionalProperties": false
       },
-      "ClassMaster": {
-        "required": [
-          "class",
-          "createdAt",
-          "strength",
-          "updatedAt"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "class": {
-            "maxLength": 5,
-            "minLength": 0,
-            "type": "string"
-          },
-          "strength": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "isActive": {
-            "type": "boolean"
-          },
-          "students": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Student"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "CreateClassRequestDto": {
         "required": [
           "class"
@@ -1148,8 +1150,6 @@
         "type": "object",
         "properties": {
           "classId": {
-            "maximum": 2147483647,
-            "minimum": 1,
             "type": "integer",
             "format": "int32"
           },
@@ -1171,7 +1171,14 @@
             "type": "boolean"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "example": {
+          "classId": 1,
+          "firstName": "Jane",
+          "lastName": "Doe",
+          "rollNo": 101,
+          "active": true
+        }
       },
       "CreateStudentAttendanceRequestDto": {
         "type": "object",
@@ -1263,96 +1270,6 @@
         },
         "additionalProperties": false
       },
-      "Student": {
-        "required": [
-          "classId",
-          "createdDate",
-          "firstName",
-          "lastName",
-          "rollNo"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "classId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "firstName": {
-            "maxLength": 40,
-            "minLength": 0,
-            "type": "string"
-          },
-          "lastName": {
-            "maxLength": 40,
-            "minLength": 0,
-            "type": "string"
-          },
-          "rollNo": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "active": {
-            "type": "boolean"
-          },
-          "createdDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "class": {
-            "$ref": "#/components/schemas/ClassMaster"
-          },
-          "attendances": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StudentAttendance"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "StudentAttendance": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "studentId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "attendanceDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "status": {
-            "type": "string",
-            "nullable": true
-          },
-          "created_At": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_At": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "student": {
-            "$ref": "#/components/schemas/Student"
-          }
-        },
-        "additionalProperties": false
-      },
       "StudentSearchRequestDto": {
         "type": "object",
         "properties": {
@@ -1439,6 +1356,49 @@
           }
         },
         "additionalProperties": false
+      },
+      "UpdateStudentDto": {
+        "required": [
+          "firstName",
+          "lastName"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "classId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "firstName": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "lastName": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "rollNo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "active": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "id": 1,
+          "classId": 1,
+          "firstName": "Jane",
+          "lastName": "Doe",
+          "rollNo": 101,
+          "active": true
+        }
       },
       "UpdateUserPermissionActiveRequestDto": {
         "type": "object",

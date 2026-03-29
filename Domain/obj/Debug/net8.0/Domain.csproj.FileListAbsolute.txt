@@ -28,6 +28,7 @@ E:\School Management System\School-Management-System-Api\Domain\obj\Debug\net8.0
 E:\School Management System\School-Management-System-Api\Domain\obj\Debug\net8.0\Domain.AssemblyInfoInputs.cache
 E:\School Management System\School-Management-System-Api\Domain\obj\Debug\net8.0\Domain.AssemblyInfo.cs
 E:\School Management System\School-Management-System-Api\Domain\obj\Debug\net8.0\Domain.csproj.CoreCompileInputs.cache
+E:\School Management System\School-Management-System-Api\Domain\obj\Debug\net8.0\Domain.sourcelink.json
 E:\School Management System\School-Management-System-Api\Domain\obj\Debug\net8.0\Domain.dll
 E:\School Management System\School-Management-System-Api\Domain\obj\Debug\net8.0\refint\Domain.dll
 E:\School Management System\School-Management-System-Api\Domain\obj\Debug\net8.0\Domain.pdb

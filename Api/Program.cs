@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.IdentityModel.Tokens;
+using Api.Swagger;
 using Microsoft.OpenApi.Models;
 using Domain.Models;
 
@@ -108,6 +109,18 @@ builder.Services.AddRateLimiter(options =>
             }));
 });
 
+const string angularCorsPolicy = "Angular";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(angularCorsPolicy, policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -135,6 +148,7 @@ builder.Services.AddSwaggerGen(c =>
             Array.Empty<string>()
         }
     });
+    c.SchemaFilter<StudentRequestSchemaFilter>();
 });
 
 builder.Services.AddScoped<DbConnectionFactory>();
@@ -155,6 +169,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(angularCorsPolicy);
 
 app.UseAuthentication();
 app.UseAuthorization();

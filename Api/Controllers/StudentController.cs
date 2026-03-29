@@ -35,6 +35,22 @@ public class StudentController : ControllerBase
                 "No class found for the given classId. Use GET api/Class to list valid ids.");
         }
 
+        if (dto.Active && classRow.Strength > 0)
+        {
+            var enrolled = await _unitOfWork.Students.CountActiveStudentsInClassAsync(dto.ClassId);
+            if (enrolled >= classRow.Strength)
+            {
+                return this.ApiBadRequest(
+                    $"This class has reached its maximum strength of {classRow.Strength} active students. Cannot add another student.");
+            }
+        }
+
+        if (await _unitOfWork.Students.ExistsRollNoInClassAsync(dto.ClassId, dto.RollNo))
+        {
+            return this.ApiBadRequest(
+                "A student with this roll number already exists in this class. Please use another roll number.");
+        }
+
         var student = new Student
         {
             ClassId = dto.ClassId,
@@ -67,10 +83,52 @@ public class StudentController : ControllerBase
     }
 
     [HttpPut]
-    public async Task<IActionResult> Update(Student model)
+    public async Task<IActionResult> Update(UpdateStudentDto dto)
     {
-        if (model == null || model.Id == 0)
+        if (dto == null)
             return this.ApiBadRequest("Invalid data");
+
+        if (!ModelState.IsValid)
+            return this.ApiValidationProblem();
+
+        var existing = await _unitOfWork.Students.GetByIdAsync(dto.Id);
+        if (existing is null)
+            return this.ApiNotFound("Student not found");
+
+        var classRow = await _unitOfWork.Classes.GetByIdAsync(dto.ClassId);
+        if (classRow is null)
+        {
+            return this.ApiBadRequest(
+                "No class found for the given classId. Use GET api/Class to list valid ids.");
+        }
+
+        if (dto.Active && classRow.Strength > 0)
+        {
+            var enrolled = await _unitOfWork.Students.CountActiveStudentsInClassAsync(dto.ClassId, dto.Id);
+            if (enrolled >= classRow.Strength)
+            {
+                return this.ApiBadRequest(
+                    $"This class has reached its maximum strength of {classRow.Strength} active students. Cannot activate or move the student into this class.");
+            }
+        }
+
+        if (await _unitOfWork.Students.ExistsRollNoInClassAsync(dto.ClassId, dto.RollNo, dto.Id))
+        {
+            return this.ApiBadRequest(
+                "A student with this roll number already exists in this class. Please use another roll number.");
+        }
+
+        var model = new Student
+        {
+            Id = dto.Id,
+            ClassId = dto.ClassId,
+            FirstName = dto.FirstName,
+            LastName = dto.LastName,
+            RollNo = dto.RollNo,
+            Active = dto.Active,
+            CreatedDate = existing.CreatedDate,
+            UpdatedDate = existing.UpdatedDate
+        };
 
         var result = await _unitOfWork.Students.UpdateAsync(model);
 

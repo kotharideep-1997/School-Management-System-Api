@@ -39,6 +39,7 @@ E:\School Management System\School-Management-System-Api\Application\obj\Debug\n
 E:\School Management System\School-Management-System-Api\Application\obj\Debug\net8.0\Application.AssemblyInfoInputs.cache
 E:\School Management System\School-Management-System-Api\Application\obj\Debug\net8.0\Application.AssemblyInfo.cs
 E:\School Management System\School-Management-System-Api\Application\obj\Debug\net8.0\Application.csproj.CoreCompileInputs.cache
+E:\School Management System\School-Management-System-Api\Application\obj\Debug\net8.0\Application.sourcelink.json
 E:\School Management System\School-Management-System-Api\Application\obj\Debug\net8.0\Applicat.44B5EDA2.Up2Date
 E:\School Management System\School-Management-System-Api\Application\obj\Debug\net8.0\Application.dll
 E:\School Management System\School-Management-System-Api\Application\obj\Debug\net8.0\refint\Application.dll

@@ -13,6 +13,10 @@ namespace Application.IRepository
 
         Task<Student?> GetByIdAsync(int id);
 
+        Task<int> CountActiveStudentsInClassAsync(int classId, int? excludeStudentId = null);
+
+        Task<bool> ExistsRollNoInClassAsync(int classId, int rollNo, int? excludeStudentId = null);
+
         Task<IEnumerable<Student>> GetAllAsync();
 
         Task<IEnumerable<Student>> SearchAsync(StudentSearchRequestDto request);

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\School Management System\\School-Management-System-Api\\Domain\\Domain.csproj": {}
+    "e:\\School Management System\\School-Management-System-Api\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "E:\\School Management System\\School-Management-System-Api\\Domain\\Domain.csproj": {
+    "e:\\School Management System\\School-Management-System-Api\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\School Management System\\School-Management-System-Api\\Domain\\Domain.csproj",
+        "projectUniqueName": "e:\\School Management System\\School-Management-System-Api\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "E:\\School Management System\\School-Management-System-Api\\Domain\\Domain.csproj",
+        "projectPath": "e:\\School Management System\\School-Management-System-Api\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\Kothari Deep\\.nuget\\packages\\",
-        "outputPath": "E:\\School Management System\\School-Management-System-Api\\Domain\\obj\\",
+        "outputPath": "e:\\School Management System\\School-Management-System-Api\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
